@@ -263,7 +263,471 @@ export const GUIDES: Guide[] = [
     "name": "Sirikonda  Raghu",
     "department": "General",
     "supervisor": "Prashanth G C"
-  }  
+  },
+  {
+    "id": 38,
+    "name": "Panugulla Kumar Goud",
+    "department": "Productivity",
+    "supervisor": "Shaik Shoaib"
+},
+{
+    "id": 39,
+    "name": "Musari Akanksha",
+    "department": "Productivity",
+    "supervisor": "Shaik Shoaib"
+},
+{
+    "id": 40,
+    "name": "K AVINASH",
+    "department": "Productivity",
+    "supervisor": "Shaik Shoaib"
+},
+{
+    "id": 41,
+    "name": "Aravindhan Elumalai",
+    "department": "Productivity",
+    "supervisor": "Shaik Shoaib"
+},
+{
+    "id": 42,
+    "name": "ARIGELA DOSHNA KOUSALYA",
+    "department": "Productivity",
+    "supervisor": "Shaik Shoaib"
+},
+{
+    "id": 43,
+    "name": "Bhargavi Killada",
+    "department": "Productivity",
+    "supervisor": "Shaik Shoaib"
+},
+{
+    "id": 44,
+    "name": "Vanka sugandham",
+    "department": "Productivity",
+    "supervisor": "Shaik Shoaib"
+},
+{
+    "id": 45,
+    "name": "Nithish Kumar Ellendhula",
+    "department": "Productivity",
+    "supervisor": "Shaik Shoaib"
+},
+{
+    "id": 46,
+    "name": "Varganti Ramya",
+    "department": "Productivity",
+    "supervisor": "Shaik Shoaib"
+},
+{
+    "id": 47,
+    "name": "kumar Nayak",
+    "department": "Productivity",
+    "supervisor": "Shaik Shoaib"
+},
+{
+    "id": 48,
+    "name": "Sudama Prasad Yadav",
+    "department": "Productivity",
+    "supervisor": "Shaik Shoaib"
+},
+{
+    "id": 49,
+    "name": "Karthik Jakka",
+    "department": "Productivity",
+    "supervisor": "Shaik Shoaib"
+},
+{
+    "id": 50,
+    "name": "M Sowmya",
+    "department": "Productivity",
+    "supervisor": "Shaik Shoaib"
+},
+{
+    "id": 51,
+    "name": "Manasa, Pasunuti",
+    "department": "Productivity",
+    "supervisor": "Shaik Shoaib"
+},
+{
+    "id": 52,
+    "name": "Vamshi Dulam",
+    "department": "Productivity",
+    "supervisor": "Shaik Shoaib"
+},
+{
+    "id": 53,
+    "name": "Lokesh yadav seemala",
+    "department": "Productivity",
+    "supervisor": "Shaik Shoaib"
+},
+{
+    "id": 54,
+    "name": "Arvind Bandari",
+    "department": "Productivity",
+    "supervisor": "Shaik Shoaib"
+},
+{
+    "id": 55,
+    "name": "Shiva G",
+    "department": "Productivity",
+    "supervisor": "Shaik Shoaib"
+},
+{
+    "id": 56,
+    "name": "Gayathri Chennoju",
+    "department": "Productivity",
+    "supervisor": "Shaik Shoaib"
+},
+{
+    "id": 57,
+    "name": "Relli Rama Naga Sai Pavan Kumar",
+    "department": "Productivity",
+    "supervisor": "Shaik Shoaib"
+},
+{
+    "id": 58,
+    "name": "Saneem Sultan",
+    "department": "Productivity",
+    "supervisor": "Shaik Shoaib"
+},
+{
+    "id": 59,
+    "name": "Vyjayanthi Kothapally",
+    "department": "Productivity",
+    "supervisor": "Shaik Shoaib"
+},
+{
+    "id": 60,
+    "name": "Mohammed Naseer",
+    "department": "Productivity",
+    "supervisor": "Shaik Shoaib"
+},
+
+{
+    "id": 61,
+    "name": "Mohammad Irfan",
+    "department": "Hosting",
+    "supervisor": "Srikanth Janga"
+},
+{
+    "id": 62,
+    "name": "Mounika Gadeela",
+    "department": "Hosting",
+    "supervisor": "Srikanth Janga"
+},
+{
+    "id": 63,
+    "name": "Abid Ahmed",
+    "department": "Hosting",
+    "supervisor": "Srikanth Janga"
+},
+{
+    "id": 64,
+    "name": "Samreen Begum",
+    "department": "Hosting",
+    "supervisor": "Srikanth Janga"
+},
+{
+    "id": 65,
+    "name": "Vangeti Divakar Reddy",
+    "department": "Hosting",
+    "supervisor": "Srikanth Janga"
+},
+{
+    "id": 66,
+    "name": "Asma Tabassum",
+    "department": "Hosting",
+    "supervisor": "Srikanth Janga"
+},
+{
+    "id": 67,
+    "name": "Veldi Vijay Kumar",
+    "department": "Hosting",
+    "supervisor": "Srikanth Janga"
+},
+{
+    "id": 68,
+    "name": "Mir Ahmed Ali",
+    "department": "Hosting",
+    "supervisor": "Srikanth Janga"
+},
+{
+    "id": 69,
+    "name": "Ayesha Siddiqua",
+    "department": "Hosting",
+    "supervisor": "Srikanth Janga"
+},
+{
+    "id": 70,
+    "name": "N sridar",
+    "department": "Hosting",
+    "supervisor": "Srikanth Janga"
+},
+{
+    "id": 71,
+    "name": "Uppula Manasa",
+    "department": "Hosting",
+    "supervisor": "Abdul Rahman"
+},
+{
+    "id": 72,
+    "name": "Nikhil Ramagiri",
+    "department": "Hosting",
+    "supervisor": "Abdul Rahman"
+},
+{
+    "id": 73,
+    "name": "Swetha Santhpale",
+    "department": "Hosting",
+    "supervisor": "Abdul Rahman"
+},
+{
+    "id": 74,
+    "name": "Singasani Arun",
+    "department": "Hosting",
+    "supervisor": "Abdul Rahman"
+},
+{
+    "id": 75,
+    "name": "Kondapaka Deepika",
+    "department": "Hosting",
+    "supervisor": "Abdul Rahman"
+},
+{
+    "id": 76,
+    "name": "Manisha Thakur",
+    "department": "Hosting",
+    "supervisor": "Abdul Rahman"
+},
+{
+    "id": 77,
+    "name": "Murali krishna Bantu",
+    "department": "Hosting",
+    "supervisor": "Abdul Rahman"
+},
+{
+    "id": 78,
+    "name": "Nallamala Srujan",
+    "department": "Hosting",
+    "supervisor": "Abdul Rahman"
+},
+{
+    "id": 79,
+    "name": "Shalini Lingala",
+    "department": "Hosting",
+    "supervisor": "Abdul Rahman"
+},
+{
+    "id": 80,
+    "name": "Alli Uday Kiran",
+    "department": "Hosting",
+    "supervisor": "Abdul Rahman"
+},
+{
+    "id": 81,
+    "name": "Rajkumar Dhude",
+    "department": "Hosting",
+    "supervisor": "Abdul Rahman"
+},
+{
+    "id": 82,
+    "name": "Deepthi Pathuri",
+    "department": "Hosting",
+    "supervisor": "Kalyan Chetty"
+},
+{
+    "id": 83,
+    "name": "Konduri Gayathri",
+    "department": "Hosting",
+    "supervisor": "Kalyan Chetty"
+},
+{
+    "id": 84,
+    "name": "Dhanraj J S",
+    "department": "Hosting",
+    "supervisor": "Srikanth Janga"
+},
+{
+    "id": 85,
+    "name": "Syed Adeeb",
+    "department": "Hosting",
+    "supervisor": "Srikanth Janga"
+},
+{
+    "id": 86,
+    "name": "Aleem Uddin Qureshi",
+    "department": "Hosting",
+    "supervisor": "Srikanth Janga"
+},
+{
+    "id": 87,
+    "name": "Maru Sharath Reddy",
+    "department": "Hosting",
+    "supervisor": "Srikanth Janga"
+},
+{
+    "id": 88,
+    "name": "Sahaja Katrimala",
+    "department": "Hosting",
+    "supervisor": "Srikanth Janga"
+},
+{
+    "id": 89,
+    "name": "Sayed Basha",
+    "department": "Hosting",
+    "supervisor": "Kalyan Chetty"
+},
+{
+    "id": 90,
+    "name": "Sanjay Kumar Sahu",
+    "department": "Hosting",
+    "supervisor": "Kalyan Chetty"
+},
+{
+    "id": 91,
+    "name": "Mir Riyasath Ali Khan",
+    "department": "Hosting",
+    "supervisor": "Srikanth Janga"
+},
+{
+    "id": 92,
+    "name": "Syed Ala Uddin",
+    "department": "Hosting",
+    "supervisor": "Kalyan Chetty"
+},
+{
+    "id": 93,
+    "name": "P Pavan Kalyan",
+    "department": "Hosting",
+    "supervisor": "Kalyan Chetty"
+},
+{
+    "id": 94,
+    "name": "Ahmed Habeeb",
+    "department": "Hosting",
+    "supervisor": "Srikanth Janga"
+},
+{
+    "id": 95,
+    "name": "Rathod Suraj Naik",
+    "department": "Hosting",
+    "supervisor": "Kalyan Chetty"
+},
+{
+    "id": 96,
+    "name": "Kasireddy Rohith Reddy",
+    "department": "Hosting",
+    "supervisor": "Srikanth Janga"
+},
+{
+    "id": 97,
+    "name": "Shiva Kasula",
+    "department": "Hosting",
+    "supervisor": "Srikanth Janga"
+},
+{
+    "id": 98,
+    "name": "Dipranjan Handique",
+    "department": "Hosting",
+    "supervisor": "Srikanth Janga"
+},
+
+  {
+    "id": 99,
+    "name": "Christy Golkonda",
+    "department": "Billing",
+    "supervisor": "Kalyan Chetty"
+},
+{
+    "id": 100,
+    "name": "Sri, Koppula Bhanu",
+    "department": "Billing",
+    "supervisor": "Kalyan Chetty"
+},
+{
+    "id": 101,
+    "name": "KARTHIK AKARAPU",
+    "department": "Billing",
+    "supervisor": "Kalyan Chetty"
+},
+{
+    "id": 102,
+    "name": "Sai Shashank K",
+    "department": "Billing",
+    "supervisor": "Kalyan Chetty"
+},
+{
+    "id": 103,
+    "name": "Srikanth B",
+    "department": "Billing",
+    "supervisor": "Kalyan Chetty"
+},
+{
+    "id": 104,
+    "name": "Dhruvitha",
+    "department": "Billing",
+    "supervisor": "Kalyan Chetty"
+},
+{
+    "id": 105,
+    "name": "Yaswik Lebaka",
+    "department": "Billing",
+    "supervisor": "Kalyan Chetty"
+},
+{
+    "id": 106,
+    "name": "Sharvani, Kodari",
+    "department": "Billing",
+    "supervisor": "Kalyan Chetty"
+},
+{
+    "id": 107,
+    "name": "Mohammed Faiz Uddin",
+    "department": "Billing",
+    "supervisor": "Kalyan Chetty"
+},
+{
+    "id": 108,
+    "name": "Tarun Namala",
+    "department": "Billing",
+    "supervisor": "Kalyan Chetty"
+},
+{
+    "id": 109,
+    "name": "Venkatesh R",
+    "department": "Billing",
+    "supervisor": "Kalyan Chetty"
+},
+{
+    "id": 110,
+    "name": "Mohammad shahriyar Hussain",
+    "department": "Billing",
+    "supervisor": "Kalyan Chetty"
+},
+{
+    "id": 111,
+    "name": "Pavankalyan Bajanthri",
+    "department": "Billing",
+    "supervisor": "Kalyan Chetty"
+},
+{
+    "id": 112,
+    "name": "Keshav, Manda",
+    "department": "Billing",
+    "supervisor": "Kalyan Chetty"
+},
+{
+    "id": 113,
+    "name": "Navya Vanga",
+    "department": "Billing",
+    "supervisor": "Kalyan Chetty"
+},
+{
+    "id": 114,
+    "name": "Prasanna Machha",
+    "department": "Billing",
+    "supervisor": "Kalyan Chetty"
+}
 ];
 
 // Get unique departments from guides list
