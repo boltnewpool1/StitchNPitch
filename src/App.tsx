@@ -108,6 +108,8 @@ function App() {
 
   const saveWinnerToDatabase = async (winner: Winner) => {
     try {
+      console.log('Attempting to save winner to database:', winner);
+      
       const { data, error } = await supabase
         .from('winners')
         .insert([{
@@ -122,28 +124,39 @@ function App() {
         .single();
 
       if (error) {
-        console.error('Error saving winner to database:', error);
+        console.error('Supabase error saving winner:', error);
+        console.error('Error details:', {
+          message: error.message,
+          details: error.details,
+          hint: error.hint,
+          code: error.code
+        });
         // Fallback to localStorage
         const winnerWithId = { ...winner, id: `local-${Date.now()}-${Math.random().toString(36).substr(2, 9)}` };
         const updatedWinners = [...winners, winnerWithId].sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
         setWinners(updatedWinners);
         localStorage.setItem('stitchAndPitchWinners', JSON.stringify(updatedWinners));
+        alert('Database connection failed. Winner saved locally. Please check your Supabase connection.');
       } else {
+        console.log('Winner saved successfully to database:', data);
         // Reload winners from database to get the latest data
         await loadWinners();
       }
     } catch (error) {
-      console.error('Error connecting to database:', error);
+      console.error('Network error connecting to database:', error);
       // Fallback to localStorage
       const winnerWithId = { ...winner, id: `local-${Date.now()}-${Math.random().toString(36).substr(2, 9)}` };
       const updatedWinners = [...winners, winnerWithId].sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
       setWinners(updatedWinners);
       localStorage.setItem('stitchAndPitchWinners', JSON.stringify(updatedWinners));
+      alert('Network error. Winner saved locally. Please check your internet connection and Supabase configuration.');
     }
   };
 
   const saveLoserToDatabase = async (loser: Loser) => {
     try {
+      console.log('Attempting to save loser to database:', loser);
+      
       const { data, error } = await supabase
         .from('losers')
         .insert([{
@@ -158,17 +171,24 @@ function App() {
         .single();
 
       if (error) {
-        console.error('Error saving loser to database:', error);
+        console.error('Supabase error saving loser:', error);
+        console.error('Error details:', {
+          message: error.message,
+          details: error.details,
+          hint: error.hint,
+          code: error.code
+        });
         // Fallback to localStorage
         const updatedLosers = [...losers, loser].sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
         setLosers(updatedLosers);
         localStorage.setItem('stitchAndPitchLosers', JSON.stringify(updatedLosers));
       } else {
+        console.log('Loser saved successfully to database:', data);
         // Reload losers from database to get the latest data
         await loadLosers();
       }
     } catch (error) {
-      console.error('Error connecting to database:', error);
+      console.error('Network error connecting to database:', error);
       // Fallback to localStorage
       const updatedLosers = [...losers, loser].sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
       setLosers(updatedLosers);
