@@ -124,7 +124,8 @@ function App() {
       if (error) {
         console.error('Error saving winner to database:', error);
         // Fallback to localStorage
-        const updatedWinners = [...winners, winner].sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
+        const winnerWithId = { ...winner, id: `local-${Date.now()}-${Math.random().toString(36).substr(2, 9)}` };
+        const updatedWinners = [...winners, winnerWithId].sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
         setWinners(updatedWinners);
         localStorage.setItem('stitchAndPitchWinners', JSON.stringify(updatedWinners));
       } else {
@@ -134,7 +135,8 @@ function App() {
     } catch (error) {
       console.error('Error connecting to database:', error);
       // Fallback to localStorage
-      const updatedWinners = [...winners, winner].sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
+      const winnerWithId = { ...winner, id: `local-${Date.now()}-${Math.random().toString(36).substr(2, 9)}` };
+      const updatedWinners = [...winners, winnerWithId].sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
       setWinners(updatedWinners);
       localStorage.setItem('stitchAndPitchWinners', JSON.stringify(updatedWinners));
     }
@@ -175,6 +177,12 @@ function App() {
   };
 
   const deleteWinnerFromDatabase = async (winnerId: string) => {
+    if (!winnerId || winnerId.trim() === '') {
+      console.error('Invalid winnerId provided for deletion');
+      alert('Error: Invalid winner ID. Cannot delete winner.');
+      return;
+    }
+
     try {
       const { error } = await supabase
         .from('winners')
@@ -183,6 +191,7 @@ function App() {
 
       if (error) {
         console.error('Error deleting winner from database:', error);
+        alert('Error deleting winner from database. Please try again.');
         // Fallback to localStorage
         const updatedWinners = winners.filter(winner => winner.id !== winnerId);
         setWinners(updatedWinners);
@@ -190,9 +199,11 @@ function App() {
       } else {
         // Reload winners from database to get the latest data
         await loadWinners();
+        console.log('Winner deleted successfully');
       }
     } catch (error) {
       console.error('Error connecting to database:', error);
+      alert('Database connection error. Falling back to local storage.');
       // Fallback to localStorage
       const updatedWinners = winners.filter(winner => winner.id !== winnerId);
       setWinners(updatedWinners);

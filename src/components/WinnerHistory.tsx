@@ -248,6 +248,11 @@ const WinnerHistory: React.FC<WinnerHistoryProps> = ({ winners, onDeleteWinner, 
   });
 
   const handleDeleteClick = (winner: Winner) => {
+    if (!winner.id) {
+      console.error('Winner ID is missing, cannot delete');
+      alert('Error: Winner ID is missing. Cannot delete this winner.');
+      return;
+    }
     setDeleteModalState({
       isOpen: true,
       winnerId: winner.id || '',
@@ -256,14 +261,17 @@ const WinnerHistory: React.FC<WinnerHistoryProps> = ({ winners, onDeleteWinner, 
   };
 
   const handleDeleteConfirm = () => {
-    if (deleteModalState.winnerId && onDeleteWinner) {
+    if (deleteModalState.winnerId && onDeleteWinner && deleteModalState.winnerId.trim() !== '') {
       onDeleteWinner(deleteModalState.winnerId);
+      setDeleteModalState({
+        isOpen: false,
+        winnerId: null,
+        winnerName: ''
+      });
+    } else {
+      console.error('Cannot delete: missing winnerId or onDeleteWinner function');
+      alert('Error: Cannot delete winner. Missing required information.');
     }
-    setDeleteModalState({
-      isOpen: false,
-      winnerId: null,
-      winnerName: ''
-    });
   };
 
   const handleDeleteModalClose = () => {
@@ -499,7 +507,12 @@ const WinnerHistory: React.FC<WinnerHistoryProps> = ({ winners, onDeleteWinner, 
                     {onDeleteWinner && (
                       <button
                         onClick={() => handleDeleteClick(winner)}
-                        className="p-2 bg-red-500 bg-opacity-20 text-red-300 rounded-lg hover:bg-red-500 hover:text-white transition-all"
+                        disabled={!winner.id}
+                        className={`p-2 rounded-lg transition-all ${
+                          !winner.id 
+                            ? 'bg-gray-500 bg-opacity-20 text-gray-400 cursor-not-allowed' 
+                            : 'bg-red-500 bg-opacity-20 text-red-300 hover:bg-red-500 hover:text-white'
+                        }`}
                         title="Delete this winner"
                       >
                         <Trash2 className="w-5 h-5" />
