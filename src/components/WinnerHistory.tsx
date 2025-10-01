@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Trophy, Calendar, User, Building, UserCheck, Trash2, AlertTriangle, X, Filter, Users, Star, MessageCircle, Eye, EyeOff } from 'lucide-react';
-import { Winner, ADMIN_PASSWORD, DEPARTMENTS } from '../config/data';
+import { Trophy, Calendar, User, Building, UserCheck, Trash2, AlertTriangle, X, Filter, Users, Star, MessageCircle, Eye, EyeOff, Database } from 'lucide-react';
+import { Winner, ADMIN_PASSWORD, PURGE_PASSWORD, DEPARTMENTS } from '../config/data';
 
 interface WinnerHistoryProps {
   winners: Winner[];
   onDeleteWinner?: (winnerId: string) => void;
+  onPurgeAllWinners?: () => void;
 }
 
 interface DeleteModalProps {
@@ -13,6 +14,133 @@ interface DeleteModalProps {
   onConfirm: () => void;
   winnerName: string;
 }
+
+interface PurgeModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onConfirm: () => void;
+  winnerCount: number;
+}
+
+const PurgeModal: React.FC<PurgeModalProps> = ({ isOpen, onClose, onConfirm, winnerCount }) => {
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [confirmText, setConfirmText] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (confirmText !== 'DELETE ALL WINNERS') {
+      setError('Please type "DELETE ALL WINNERS" to confirm');
+      return;
+    }
+    
+    if (password === PURGE_PASSWORD) {
+      onConfirm();
+      setPassword('');
+      setConfirmText('');
+      setError('');
+    } else {
+      setError('Invalid password. Access denied.');
+    }
+  };
+
+  const handleClose = () => {
+    setPassword('');
+    setConfirmText('');
+    setError('');
+    onClose();
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+      <div className="bg-white bg-opacity-10 backdrop-blur-xl border border-white border-opacity-20 rounded-3xl p-8 max-w-md w-full shadow-2xl">
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-red-500 bg-opacity-20 rounded-xl backdrop-blur-sm">
+              <Database className="w-8 h-8 text-red-300" />
+            </div>
+            <h2 className="text-2xl font-bold text-white">Purge All Winners</h2>
+          </div>
+          <button
+            onClick={handleClose}
+            className="text-white hover:text-gray-200 transition-colors bg-white bg-opacity-10 rounded-full p-2 hover:bg-opacity-20 backdrop-blur-sm"
+          >
+            <X className="w-6 h-6" />
+          </button>
+        </div>
+
+        <div className="mb-6">
+          <div className="bg-red-500 bg-opacity-20 border border-red-400 border-opacity-50 rounded-xl p-4 mb-6">
+            <div className="flex items-center gap-3">
+              <AlertTriangle className="w-6 h-6 text-red-300" />
+              <div>
+                <p className="text-red-200 font-semibold">DANGER ZONE</p>
+                <p className="text-red-100 text-sm">
+                  This will permanently delete all {winnerCount} winners from the database. This action cannot be undone.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <form onSubmit={handleSubmit}>
+            <div className="mb-4">
+              <label htmlFor="confirm-text" className="block text-sm font-medium text-white text-opacity-90 mb-2">
+                Type "DELETE ALL WINNERS" to confirm
+              </label>
+              <input
+                type="text"
+                id="confirm-text"
+                value={confirmText}
+                onChange={(e) => setConfirmText(e.target.value)}
+                className="w-full px-4 py-3 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-xl focus:ring-2 focus:ring-red-400 focus:border-transparent text-white placeholder-white placeholder-opacity-60 backdrop-blur-sm"
+                placeholder="DELETE ALL WINNERS"
+              />
+            </div>
+            
+            <div className="mb-4">
+              <label htmlFor="purge-password" className="block text-sm font-medium text-white text-opacity-90 mb-2">
+                Admin Password
+              </label>
+              <input
+                type="password"
+                id="purge-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4 py-3 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-xl focus:ring-2 focus:ring-red-400 focus:border-transparent text-white placeholder-white placeholder-opacity-60 backdrop-blur-sm"
+                placeholder="Enter admin password"
+              />
+            </div>
+            
+            {error && (
+              <div className="mb-4 p-3 bg-red-500 bg-opacity-20 border border-red-400 border-opacity-50 text-red-200 rounded-lg backdrop-blur-sm">
+                {error}
+              </div>
+            )}
+
+            <div className="flex gap-3">
+              <button
+                type="button"
+                onClick={handleClose}
+                className="flex-1 py-3 px-4 bg-white bg-opacity-10 border border-white border-opacity-20 text-white rounded-xl hover:bg-opacity-20 transition-colors backdrop-blur-sm"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="flex-1 py-3 px-4 bg-red-600 bg-opacity-80 text-white rounded-xl hover:bg-opacity-90 transition-colors backdrop-blur-sm border border-red-500 border-opacity-50"
+              >
+                Purge All Winners
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const DeleteModal: React.FC<DeleteModalProps> = ({ isOpen, onClose, onConfirm, winnerName }) => {
   const [password, setPassword] = useState('');
@@ -101,7 +229,7 @@ const DeleteModal: React.FC<DeleteModalProps> = ({ isOpen, onClose, onConfirm, w
   );
 };
 
-const WinnerHistory: React.FC<WinnerHistoryProps> = ({ winners, onDeleteWinner }) => {
+const WinnerHistory: React.FC<WinnerHistoryProps> = ({ winners, onDeleteWinner, onPurgeAllWinners }) => {
   const [selectedDepartment, setSelectedDepartment] = useState<string>('All');
   const [expandedWinner, setExpandedWinner] = useState<string | null>(null);
   const [deleteModalState, setDeleteModalState] = useState<{
@@ -112,6 +240,11 @@ const WinnerHistory: React.FC<WinnerHistoryProps> = ({ winners, onDeleteWinner }
     isOpen: false,
     winnerId: null,
     winnerName: ''
+  });
+  const [purgeModalState, setPurgeModalState] = useState<{
+    isOpen: boolean;
+  }>({
+    isOpen: false
   });
 
   const handleDeleteClick = (winner: Winner) => {
@@ -139,6 +272,21 @@ const WinnerHistory: React.FC<WinnerHistoryProps> = ({ winners, onDeleteWinner }
       winnerId: null,
       winnerName: ''
     });
+  };
+
+  const handlePurgeClick = () => {
+    setPurgeModalState({ isOpen: true });
+  };
+
+  const handlePurgeConfirm = () => {
+    if (onPurgeAllWinners) {
+      onPurgeAllWinners();
+    }
+    setPurgeModalState({ isOpen: false });
+  };
+
+  const handlePurgeModalClose = () => {
+    setPurgeModalState({ isOpen: false });
   };
 
   const toggleWinnerExpansion = (winnerId: string) => {
@@ -187,6 +335,22 @@ const WinnerHistory: React.FC<WinnerHistoryProps> = ({ winners, onDeleteWinner }
           <p className="text-xl text-purple-200">
             {winners.length} {winners.length === 1 ? 'Winner' : 'Winners'} Selected So Far
           </p>
+          
+          {/* Purge Button */}
+          {winners.length > 0 && onPurgeAllWinners && (
+            <div className="mt-6">
+              <button
+                onClick={handlePurgeClick}
+                className="inline-flex items-center gap-2 bg-red-600 bg-opacity-80 text-white px-6 py-3 rounded-xl hover:bg-opacity-90 transition-all transform hover:scale-105 font-semibold backdrop-blur-sm border border-red-500 border-opacity-50"
+              >
+                <Database className="w-5 h-5" />
+                Purge All Winners
+              </button>
+              <p className="text-red-200 text-sm mt-2 opacity-75">
+                Permanently delete all winner records from database
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Department Filter Buttons */}
@@ -389,6 +553,13 @@ const WinnerHistory: React.FC<WinnerHistoryProps> = ({ winners, onDeleteWinner }
           onClose={handleDeleteModalClose}
           onConfirm={handleDeleteConfirm}
           winnerName={deleteModalState.winnerName}
+        />
+        
+        <PurgeModal
+          isOpen={purgeModalState.isOpen}
+          onClose={handlePurgeModalClose}
+          onConfirm={handlePurgeConfirm}
+          winnerCount={winners.length}
         />
       </div>
     </div>

@@ -241,6 +241,48 @@ function App() {
     }
   };
 
+  const handlePurgeAllWinners = async () => {
+    try {
+      // Delete all winners from database
+      const { error: winnersError } = await supabase
+        .from('winners')
+        .delete()
+        .gte('created_at', '1900-01-01');
+
+      // Delete all losers from database
+      const { error: losersError } = await supabase
+        .from('losers')
+        .delete()
+        .gte('created_at', '1900-01-01');
+
+      if (winnersError) {
+        console.error('Error purging winners:', winnersError);
+      }
+      
+      if (losersError) {
+        console.error('Error purging losers:', losersError);
+      }
+
+      // Clear local state and localStorage
+      setWinners([]);
+      setLosers([]);
+      localStorage.removeItem('stitchAndPitchWinners');
+      localStorage.removeItem('stitchAndPitchLosers');
+      
+      // Show success message
+      alert('All winners and losers have been successfully purged from the database.');
+      
+    } catch (error) {
+      console.error('Error purging data:', error);
+      // Fallback: clear localStorage only
+      setWinners([]);
+      setLosers([]);
+      localStorage.removeItem('stitchAndPitchWinners');
+      localStorage.removeItem('stitchAndPitchLosers');
+      alert('Data purged from local storage. Database may still contain records due to connection issues.');
+    }
+  };
+
   const handleGuideSelected = (guide: Guide) => {
     // Extract chat IDs from the guide object if they exist
     const { chatIds, ...guideData } = guide as Guide & { chatIds?: string[] };
@@ -357,6 +399,7 @@ function App() {
           <WinnerHistory 
             winners={winners} 
             onDeleteWinner={deleteWinnerFromDatabase}
+            onPurgeAllWinners={handlePurgeAllWinners}
           />
         )}
       </div>
